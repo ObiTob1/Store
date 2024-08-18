@@ -1,0 +1,67 @@
+﻿@using Store.Models
+@model ProductCreate
+@{
+
+}
+<h2>Измените данные продукта</h2>
+
+@using (Html.BeginForm("Edit","Home", FormMethod.Post))
+{
+    <p>
+        <label>Id</label>
+        <label>@ViewBag.Id</label>
+       
+        <span asp-validation-for="Id"></span>
+    </p>
+
+    <p>
+        <label>Название</label>
+        @Html.TextBox("Name", $"{Model.Name}")
+        <span asp-validation-for="Name"></span>
+    </p>
+
+    <p>
+        <label>Производитель</label>
+        @Html.TextBox("Brend", $"{@Model.Brend}")
+        <span asp-validation-for="Brend"></span>
+    </p>
+
+
+    <p>
+        <label>Категория</label>
+        @Html.DropDownList("Category", new List<SelectListItem>
+    {
+    new SelectListItem { Text = "Ноутбук", Value = "1", Selected=true},
+    new SelectListItem { Text = "Компьютер", Value = "2"},
+    new SelectListItem { Text = "Планшет", Value = "3"},
+    new SelectListItem { Text = "Телефон", Value = "4"},
+    new SelectListItem { Text = "Наушники", Value = "5"},
+    }, "Выберите категорию")
+    </p>
+
+    <p>
+        <label>Цена</label>
+        @Html.TextBox("Price", $"{Model.Price}", new { type = "number" })
+        <span asp-validation-for="Price"></span>
+    </p>
+
+    <p>
+        <label>Описание</label>
+        @Html.TextArea("Description", $"{Model.Description}", 1, 25, null)
+        <span asp-validation-for="Descriprion"></span>
+    </p>
+
+    <p>
+        <label>Изображение</label>
+    </p>
+
+    <p>
+        <label>Время создания</label>
+        <label>@ViewBag.CreatedAt</label>
+    </p>
+
+    <div>
+        <input type="submit" value="Сохранить" />
+    </div>
+    
+}
